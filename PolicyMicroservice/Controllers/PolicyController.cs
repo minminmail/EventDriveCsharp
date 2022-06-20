@@ -6,12 +6,12 @@ namespace PolicyMicroservice.Controllers;
 [Route("[controller]")]
 public class PolicyController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
 
     private readonly ILogger<PolicyController> _logger;
+
+    private readonly SequelClaims.EventBus.Interfaces.IRabbitMQAdapter iRabbitMQAdapter;
+
+    private readonly SequelClaims.PolicyMicroservice.Interfaces.EventMapper _mapper;
 
     public PolicyController(ILogger<PolicyController> logger)
     {
@@ -23,23 +23,27 @@ public class PolicyController : ControllerBase
     {
         return Enumerable.Range(1, 5).Select(index => new Policy
         {
-            /*
-            Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]*/
+            
         })
         .ToArray();
     }
 
     // POST api/json
     [HttpPost(Name = "CreatePolicy")]
-    public void Post([FromBody] string policyJson)
+    public async Task PostAsync([FromBody] Policy policy)
     {
+        // save to DB with repository service
+
+        // send policy event to rabbitmq
+        var eventMessage = _mapper.Map<PolicyEvent>(policy);
+
+        await iRabbitMQAdapter.Publish(eventMessage);
+
     }
 
     // PUT api/json/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string json)
+    public void Put(int id, [FromBody] Policy policy)
     {
     }
 

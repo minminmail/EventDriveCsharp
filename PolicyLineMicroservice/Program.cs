@@ -1,4 +1,10 @@
+using Microsoft.Graph;
+
+using SequelClaims.EventBus.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
+
+IRabbitMQAdapter adapter;
 
 // Add services to the container.
 
@@ -19,5 +25,11 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+// use loop to listen the policy queue
+
+var cosumer = new RabbitMQPolicyLineConsumer("policyQueue");
+
+Task task = adapter.Consumer(cosumer);
 
 app.Run();

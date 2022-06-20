@@ -20,4 +20,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// use loop to listen the policy queue
+var cosumer = new RabbitMQClaimConsumer("policyQueue");
+
+Task task = adapter.Consumer(cosumer);
+
 app.Run();
