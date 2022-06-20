@@ -18,7 +18,7 @@ public class PolicyController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
+    [HttpGet(Name = "GetPolicy")]
     public IEnumerable<Policy> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new Policy
@@ -30,4 +30,17 @@ public class PolicyController : ControllerBase
         })
         .ToArray();
     }
+
+    // POST api/json
+    [HttpPost(Name = "CreatePolicy")]
+    public void Post([FromBody] string policyJson)
+    {
+    }
+
+    // PUT api/json/5
+    [HttpPut("{id}")]
+    public void Put(int id, [FromBody] string json)
+    {
+    }
+
 }
