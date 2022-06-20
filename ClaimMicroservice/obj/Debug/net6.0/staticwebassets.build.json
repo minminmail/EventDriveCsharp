@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "NXSZXA72U7hMegiC7T3WYSBv1zbFYLQ9AohDxt56TWA=",
+  "Source": "ClaimMicroservice",
+  "BasePath": "_content/ClaimMicroservice",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

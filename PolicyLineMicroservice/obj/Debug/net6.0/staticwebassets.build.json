@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "W8XTTbpboPImp+X53h5oMssoy/F1f+uh62pYsdxMhCA=",
+  "Source": "PolicyLineMicroservice",
+  "BasePath": "_content/PolicyLineMicroservice",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
